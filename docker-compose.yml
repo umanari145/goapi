@@ -1,0 +1,40 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/go/Dockerfile
+    #  ↓この書き方だとCOPY go.mod(.sum) が動かない(ファイルが見つけられない)ので
+    #  context: ./docker/go
+    #  dockerfile: Dockerfile
+    volumes:
+      - ".:/go/src/app"
+    tty: true
+    environment:
+      - GOPATH=/go/libs
+      - DB_TYPE=postgres
+      - POSTGRES_DBHOST=db
+      - POSTGRES_DBNAME=sample
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "80:80"
+    networks:
+      - goliblang
+  db:
+    container_name: "db"
+    build:
+      context: ./docker/pgsql
+      dockerfile: Dockerfile
+    ports:
+     - "5432:5432"
+    environment:
+      - POSTGRES_DB=sample
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    networks:
+     - goliblang
+
+networks:
+  goliblang:
+    driver: "bridge"
