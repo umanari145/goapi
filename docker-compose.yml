@@ -1,6 +1,7 @@
 version: '3'
 services:
   app:
+    container_name: goapi_app
     build:
       context: .
       dockerfile: docker/go/Dockerfile
@@ -18,11 +19,11 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
     ports:
-      - "80:80"
+      - "8080:8080"
     networks:
-      - goliblang
+      - goapi
   db:
-    container_name: "db"
+    container_name: goapi_db
     build:
       context: ./docker/pgsql
       dockerfile: Dockerfile
@@ -33,8 +34,8 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
     networks:
-     - goliblang
+     - goapi
 
 networks:
-  goliblang:
+  goapi:
     driver: "bridge"
