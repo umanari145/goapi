@@ -30,3 +30,6 @@ https://github.com/joho/godotenv
 
 ### migration tool
 https://bitbucket.org/liamstask/goose/src/master/
+
+### faker
+https://github.com/walkersumida/jaker
