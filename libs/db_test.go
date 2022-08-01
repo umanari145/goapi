@@ -1,9 +1,10 @@
 package libs
 
 import (
-	"github.com/walkersumida/jaker"
 	"goapi/models"
 	"testing"
+
+	"github.com/walkersumida/jaker"
 )
 
 func TestConnectDb(t *testing.T) {
@@ -11,16 +12,15 @@ func TestConnectDb(t *testing.T) {
 }
 
 func TestFakerData(t *testing.T) {
-
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 1; i++ {
 		profile := jaker.Profile
 		user := models.User{}
 		user.UserName = profile.JaKanjiFullName
 		db, _ := Connect()
-		_ = db.Create(&user)
+		_ = db.Debug().Create(&user)
 		favorite := models.Favorite{}
 		favorite.UserId = user.ID
 		favorite.UserId = user.ID
-		_ = db.Create(&favorite)
+		_ = db.Debug().Create(&favorite)
 	}
 }

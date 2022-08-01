@@ -14,7 +14,7 @@ func Connect() (db *gorm.DB, err error) {
 	err = godotenv.Load("../.env")
 
 	if err != nil {
-		logrus.Fatal("Error loading .env file")
+		Logger.Print("Error loading .env file")
 	}
 
 	USER := os.Getenv("POSTGRES_USER")
@@ -29,7 +29,9 @@ func Connect() (db *gorm.DB, err error) {
 		" sslmode=disable"
 
 	db, err = gorm.Open("postgres", CONNECT)
+	//defer db.Close()
 
+	db.SetLogger(&Logger{})
 	if err != nil {
 		logrus.Fatal(err)
 	}
