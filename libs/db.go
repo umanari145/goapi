@@ -6,15 +6,17 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
-	"github.com/sirupsen/logrus"
 )
 
 func Connect() (db *gorm.DB, err error) {
 
 	err = godotenv.Load("../.env")
+	// gologrus
+	//logger := Logger{}
+	//logger.Print("log", "db connect")
 
 	if err != nil {
-		Logger.Print("Error loading .env file")
+		//logger.Print("Error loading .env file")
 	}
 
 	USER := os.Getenv("POSTGRES_USER")
@@ -30,10 +32,10 @@ func Connect() (db *gorm.DB, err error) {
 
 	db, err = gorm.Open("postgres", CONNECT)
 	//defer db.Close()
-
 	db.SetLogger(&Logger{})
+	db.LogMode(true)
 	if err != nil {
-		logrus.Fatal(err)
+		//logger.Print(err)
 	}
 
 	return db, err

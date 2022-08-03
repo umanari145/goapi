@@ -23,7 +23,8 @@ go run main.go
 ```
 ### log
 logruns<br>
-https://github.com/Sirupsen/logrus
+https://github.com/Sirupsen/logrus<br>
+https://www.soberkoder.com/go-gorm-logging/
 ### 環境変数の読み込み
 godotenv<br>
 https://github.com/joho/godotenv
