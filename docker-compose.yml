@@ -32,10 +32,12 @@ services:
     environment:
       - POSTGRES_DB=sample
       - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=password   
     networks:
      - goapi
 
+volumes:
+  db-store:
 networks:
   goapi:
     driver: "bridge"

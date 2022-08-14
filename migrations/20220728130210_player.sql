@@ -1,9 +1,10 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
-create table users (
+create table players (
     id  SERIAL PRIMARY KEY,
-    user_name varchar(50) NOT NULL,
+    player_name varchar(50) NOT NULL,
+    birth_date date NOT NULL,
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at timestamp DEFAULT NULL
@@ -11,4 +12,4 @@ create table users (
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
-drop table users;
+drop table players;
