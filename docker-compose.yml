@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   app:
     container_name: goapi_app
@@ -28,16 +28,14 @@ services:
       context: ./docker/pgsql
       dockerfile: Dockerfile
     ports:
-     - "5432:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_DB=sample
       - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password   
+      - POSTGRES_PASSWORD=password
     networks:
-     - goapi
+      - goapi
 
-volumes:
-  db-store:
 networks:
   goapi:
     driver: "bridge"
